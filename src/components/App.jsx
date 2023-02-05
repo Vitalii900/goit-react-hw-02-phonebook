@@ -10,10 +10,32 @@ export class App extends Component {
     filter: '',
   };
 
+  deleteContact = contactId => {
+    this.setState(prevState => {
+      return {
+        contacts: prevState.contacts.filter(
+          contact => contact.id !== contactId
+        ),
+      };
+    });
+  };
+
+  reset = () => {
+    this.setState({
+      filter: '',
+    });
+  };
+
   formSubmitHandler = data => {
     this.setState(prevState => {
       const prevContacts = prevState.contacts;
       const contactId = nanoid();
+      const findRepeateName = prevContacts.find(contact => {
+        return contact.name.includes(data.name);
+      });
+      if (findRepeateName) {
+        alert(`${findRepeateName.name}is already in contacts`);
+      }
       return {
         contacts: [
           ...prevContacts,
@@ -21,6 +43,7 @@ export class App extends Component {
         ],
       };
     });
+    this.reset();
   };
 
   handleFilterInput = event => {
@@ -38,7 +61,11 @@ export class App extends Component {
         <h2>Contacts</h2>
         <Filter filter={filter} onChange={this.handleFilterInput}></Filter>
         {contacts.length !== 0 && (
-          <ContactList filter={filter} contacts={contacts}></ContactList>
+          <ContactList
+            deleteContact={this.deleteContact}
+            filter={filter}
+            contacts={contacts}
+          ></ContactList>
         )}
       </div>
     );

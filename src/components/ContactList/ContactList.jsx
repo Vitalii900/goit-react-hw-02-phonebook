@@ -1,6 +1,5 @@
-import { Contact } from './Contact'
 
-export function ContactList({ filter, contacts }) {
+export function ContactList({ filter, contacts, deleteContact }) {
   const visibleContacts = contacts.filter(contact =>
     contact.name.toLowerCase().includes(filter.toLowerCase())
   );
@@ -8,11 +7,12 @@ export function ContactList({ filter, contacts }) {
     <ul>
       {visibleContacts.map(contact => {
         return (
-          <Contact
-            key={contact.id}
-            name={contact.name}
-            tel={contact.number}
-          ></Contact>
+          <li key={contact.id}>
+            <p>
+              {contact.name}: {contact.number}
+            </p>
+            <button onClick={() => deleteContact(contact.id)}>Delete</button>
+          </li>
         );
       })}
     </ul>
