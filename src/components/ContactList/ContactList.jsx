@@ -1,4 +1,5 @@
 import '../ContactList/ContactList.css';
+import PropTypes from 'prop-types';
 
 export function ContactList({ filter, contacts, deleteContact }) {
   const visibleContacts = contacts.filter(contact =>
@@ -19,3 +20,15 @@ export function ContactList({ filter, contacts, deleteContact }) {
     </ul>
   );
 }
+
+ContactList.propTypes = {
+  filter: PropTypes.string.isRequired,
+  deleteContact: PropTypes.func.isRequired,
+  contacts: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string,
+      name: PropTypes.string,
+      number: PropTypes.string,
+    })
+  ),
+};
