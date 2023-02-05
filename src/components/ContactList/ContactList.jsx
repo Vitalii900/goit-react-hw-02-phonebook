@@ -1,17 +1,18 @@
+import '../ContactList/ContactList.css';
 
 export function ContactList({ filter, contacts, deleteContact }) {
   const visibleContacts = contacts.filter(contact =>
     contact.name.toLowerCase().includes(filter.toLowerCase())
   );
   return (
-    <ul>
+    <ul className='list'>
       {visibleContacts.map(contact => {
         return (
-          <li key={contact.id}>
-            <p>
+          <li className='item' key={contact.id}>
+            <p className='contact'>
               {contact.name}: {contact.number}
             </p>
-            <button onClick={() => deleteContact(contact.id)}>Delete</button>
+            <button className='deleteButton' onClick={() => deleteContact(contact.id)}>Delete</button>
           </li>
         );
       })}

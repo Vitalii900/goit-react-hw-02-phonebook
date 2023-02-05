@@ -1,5 +1,6 @@
 import { Component } from 'react';
 import { nanoid } from 'nanoid';
+import '../components/App.css';
 import { ContactList } from './ContactList/ContactList';
 import { ContactForm } from './ContactForm/ContactForm';
 import { Filter } from './Filter/Filter';
@@ -55,8 +56,8 @@ export class App extends Component {
     const { filter, contacts } = this.state;
 
     return (
-      <div>
-        <h2>Phonebook</h2>
+      <div className="container">
+        <h1 className="title">Phonebook</h1>
         <ContactForm onSubmit={this.formSubmitHandler}></ContactForm>
         <h2>Contacts</h2>
         <Filter filter={filter} onChange={this.handleFilterInput}></Filter>

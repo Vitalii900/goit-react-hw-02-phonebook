@@ -1,8 +1,11 @@
-export function Filter({filter, onChange}) {
+import '../Filter/Filter.css'
+
+export function Filter({ filter, onChange }) {
   return (
-    <label>
+    <label className="label">
       Find contacts by name
       <input
+        className="input"
         type="text"
         name="filter"
         onChange={onChange}
