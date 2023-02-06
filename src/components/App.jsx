@@ -35,7 +35,8 @@ export class App extends Component {
         return contact.name.includes(data.name);
       });
       if (findRepeateName) {
-        alert(`${findRepeateName.name}is already in contacts`);
+        alert(`${findRepeateName.name} is already in contacts`);
+        return;
       }
       return {
         contacts: [
